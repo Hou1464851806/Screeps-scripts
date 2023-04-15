@@ -13,10 +13,11 @@ let roleHarvester = {
         else {
             let targets = creep.room.find(FIND_STRUCTURES, {
                 filter: structure => {
-                    return ((structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN)
-                        && structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0)
-                        || (structure.structureType == STRUCTURE_CONTAINER && ((structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN)
-                            && structure.store.getFreeCapacity(RESOURCE_ENERGY) == 0));
+                    if ((structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN) && structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0)
+                        return true;
+                    if (structure.structureType == STRUCTURE_CONTAINER && structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0)
+                        return true;
+                    return false;
                 }
             });
             console.log(`目标列表：${targets}`);
