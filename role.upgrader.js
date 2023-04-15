@@ -1,7 +1,7 @@
 let roleUpgrader = {
 
     /** @param {Creep} creep **/
-    run: function (creep) {
+    run: (creep) => {
         //采集和采集者的功能是一样的
         if (creep.memory.upgrading && creep.store[RESOURCE_ENERGY] == 0) {
             creep.memory.upgrading = false;
